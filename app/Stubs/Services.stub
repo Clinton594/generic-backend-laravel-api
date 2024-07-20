@@ -1,0 +1,21 @@
+<?php
+namespace App\Services;
+
+use App\Helpers\Response;
+
+class {{class}}
+{
+  static function handle($request)
+  {
+    $Response = new Response;
+    $response = $Response::get();
+
+    try {
+      $response = $Response::set(["data" => []], true);
+    } catch (\Throwable $th) {
+      $response = $Response::set(["message" => $th->getMessage(), "code" => getExceptionCode($th)]);
+    }
+
+    return $response;
+  }
+}
